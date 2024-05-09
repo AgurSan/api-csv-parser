@@ -1,0 +1,37 @@
+# Ignore les fichiers de dépendances
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignore les fichiers de build
+dist/
+build/
+*.js
+*.css
+
+# Ignore les fichiers d'environnement
+.env
+
+# Ignore les fichiers temporaires
+*.tmp
+*.swp
+
+# Ignore les fichiers sensibles
+secrets.json
+
+# Ignore les fichiers d'IDE/Éditeur
+.vscode/
+.idea/
+
+# Ignore les fichiers de logs et de rapports d'erreurs
+*.log
+
+# Ignore les fichiers de sauvegarde
+*.bak
+
+# Ignore les fichiers de test générés
+coverage/
+test-results/
+
+# Ignore les fichiers de documentation générés
+docs/
