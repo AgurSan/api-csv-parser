@@ -35,3 +35,9 @@ test-results/
 
 # Ignore les fichiers de documentation générés
 docs/
+
+# package
+package-lock.json
+
+# Ignore le csv
+dataset.csv
