@@ -15,7 +15,7 @@ async parseData(filePath: string): Promise<Product[]> {
         const stream = fs.createReadStream(filePath);
 
         stream.pipe(csv({ mapHeaders: ({ header }) => header.trim() }))
-            .on('data', (data: any) => {
+            .on('data', (data: Record<string, string>) => {
                 const rowData: Product = {
                     'Row ID': parseInt(data['Row ID']),
                     'Order ID': data['Order ID'],
