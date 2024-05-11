@@ -6,12 +6,13 @@ import {
     DataByDateController,
     DataByStateController,
     NumOrdersController,
-    TotalRevenueController
+    TotalRevenueController,
     UniqueCustomersController
 } from './ressources/metrics/controllers';
 
 const app: Express = express();
 app.use(cors());
+
 
 //TODO: routes
 
