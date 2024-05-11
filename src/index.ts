@@ -32,6 +32,7 @@ type ControllerMethod = (req: Request, res: Response) => Promise<void>;
 
 const endpointMap: Record<string, ControllerMethod> = {
     "avg-revenue-per-order": AvgRevenuePerOrderController.getAvgRevenuePerOrder,
+    //TODO: gérer le paramètre pour databystate et databydate
     "data-by-date": DataByDateController.getDataByDate,
     "data-by-state": DataByStateController.getDataByState,
     "num-orders": NumOrdersController.getNumOrders,
@@ -49,7 +50,13 @@ app.get("/:endpoint", async (req: Request, res: Response) => {
 });
 
 
-//TODO: Gestion des erreurs
+//Gestion des erreurs
+app.use((err: any, req: Request, res: Response, next: Function) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal server error' });
+});
+
+
 
 app.listen(config.API_PORT, () => {
     console.log(`Server started on port ${config.API_PORT}`)
