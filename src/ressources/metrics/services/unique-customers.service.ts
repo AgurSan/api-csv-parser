@@ -1,4 +1,4 @@
-import { DataService } from './data.service';
+import { DataService } from '~/utils';
 
 export class UniqueCustomersService {
     constructor(private dataService: DataService) {}
