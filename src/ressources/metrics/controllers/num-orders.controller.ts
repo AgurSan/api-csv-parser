@@ -3,7 +3,7 @@ import { NumOrdersService } from '../services/num-orders.service';
 import { DataService } from '~/utils';
 
 export class NumOrdersController {
-    private numOrdersService: NumOrdersService;
+    private static numOrdersService: NumOrdersService;
 
     /**
      * Constructs a new instance of the class.
@@ -11,7 +11,7 @@ export class NumOrdersController {
      * @param {DataService} dataService - The data service used to retrieve data.
      */
     constructor(private dataService: DataService) {
-        this.numOrdersService = new NumOrdersService(dataService);
+        NumOrdersController.numOrdersService = new NumOrdersService(dataService);
     }
 
     /**
@@ -21,9 +21,9 @@ export class NumOrdersController {
      * @param {Response} res - The response object.
      * @return {Promise<void>} A promise that resolves when the total number of orders is retrieved and the response is sent.
      */
-    async getNumOrders(req: Request, res: Response): Promise<void> {
+    static async getNumOrders(req: Request, res: Response): Promise<void> {
         try {
-            const numOrders = await this.numOrdersService.getNumOrders();
+            const numOrders = await NumOrdersController.numOrdersService.getNumOrders();
             res.status(200).json({ numOrders });
         } catch (error: any) {
             res.status(500).json({ error: error.message });

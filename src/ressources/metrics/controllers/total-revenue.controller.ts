@@ -3,7 +3,7 @@ import { TotalRevenueService } from '../services/total-revenue.service';
 import { DataService } from '~/utils';
 
 export class TotalRevenueController {
-    private totalRevenueService: TotalRevenueService;
+    private static totalRevenueService: TotalRevenueService;
 
     /**
      * Constructs a new instance of the TotalRevenueController class.
@@ -11,7 +11,7 @@ export class TotalRevenueController {
      * @param {DataService} dataService - The data service used to retrieve data.
      */
     constructor(private dataService: DataService) {
-        this.totalRevenueService = new TotalRevenueService(dataService);
+        TotalRevenueController.totalRevenueService = new TotalRevenueService(dataService);
     }
 
     /**
@@ -21,9 +21,9 @@ export class TotalRevenueController {
      * @param {Response} res - The response object.
      * @return {Promise<void>} - A promise that resolves when the total revenue is retrieved and the response is sent.
      */
-    async getTotalRevenue(req: Request, res: Response): Promise<void> {
+    static async getTotalRevenue(req: Request, res: Response): Promise<void> {
         try {
-            const totalRevenue = await this.totalRevenueService.getTotalRevenue();
+            const totalRevenue = await TotalRevenueController.totalRevenueService.getTotalRevenue();
             res.status(200).json({ totalRevenue });
         } catch (error: any) {
             res.status(500).json({ error: error.message });
