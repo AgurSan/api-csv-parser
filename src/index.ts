@@ -1,8 +1,14 @@
 import cors from "cors";
 import express, { Express } from "express";
 import { config } from "~/config";
-
-//TODO: import des controllers
+import {
+    AvgRevenuePerOrderController,
+    DataByDateController,
+    DataByStateController,
+    NumOrdersController,
+    TotalRevenueController
+    UniqueCustomersController
+} from './ressources/metrics/controllers';
 
 const app: Express = express();
 app.use(cors());
