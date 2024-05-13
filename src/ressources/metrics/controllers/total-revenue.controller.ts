@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import { TotalRevenueService } from '../services/total-revenue.service';
 import { CsvParser, DataService } from '~/utils';
 import { config } from "~/config";
