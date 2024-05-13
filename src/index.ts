@@ -54,6 +54,12 @@ app.get('/by-date/:date', async (req: Request, res: Response) => {
     res.json({ dataByDate });
 });
 
+app.get('/by-state/:state', async (req: Request, res: Response) => {
+    const state = req.params.state;
+    const dataByState = await DataByStateController.getDataByState(state);
+    res.json({ dataByState });
+})
+
 //Gestion des erreurs
 app.use((err: any, req: Request, res: Response, next: Function) => {
     console.error(err.stack);

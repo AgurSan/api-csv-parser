@@ -1,33 +1,15 @@
-import { Request, Response } from 'express';
-import { DataByStateService } from '../services/data-by-state.service';
-import { DataService } from '~/utils';
+import { DataByStateService } from '../services';
+import { CsvParser, DataService } from '~/utils';
+import { config } from "~/config";
+import { Product } from "~~/types/Product";
 
-export class DataByStateController {
-    private static dataByStateService: DataByStateService;
+const csvParser = new CsvParser();
+const dataService = new DataService(csvParser, config.CSV_FILE_PATH);
+const dataByStateService = new DataByStateService(dataService);
 
-    /**
-     * Constructs a new instance of the class.
-     *
-     * @param {DataService} dataService - The data service used to retrieve data.
-     */
-    constructor(private dataService: DataService) {
-        DataByStateController.dataByStateService = new DataByStateService(dataService);
-    }
-
-    /**
-     * Retrieves data filtered by state.
-     *
-     * @param {Request} req - The request object containing the state parameter.
-     * @param {Response} res - The response object to send the retrieved data.
-     * @return {Promise<void>} - A promise that resolves when the data filtered by state is retrieved and the response is sent.
-     */
-    static async getDataByState(req: Request, res: Response): Promise<void> {
-        try {
-            const state = req.params.state;
-            const dataByState = await DataByStateController.dataByStateService.getDataByState(state);
-            res.status(200).json(dataByState);
-        } catch (error: any) {
-            res.status(500).json({ error: error.message });
-        }
+export const DataByStateController = {
+    getDataByState: async (state: string): Promise<Product[]> => {
+        const dataByState = await dataByStateService.getDataByState(state);
+        return dataByState;
     }
 }
