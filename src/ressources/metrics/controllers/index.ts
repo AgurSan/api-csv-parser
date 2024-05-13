@@ -4,3 +4,4 @@ export * from './data-by-state.controller';
 export * from './num-orders.controller';
 export * from './total-revenue.controller';
 export * from './unique-customers.controller';
+export * from './get-all-order-dates.controller'

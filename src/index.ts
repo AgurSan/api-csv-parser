@@ -7,7 +7,8 @@ import {
     DataByStateController,
     NumOrdersController,
     TotalRevenueController,
-    UniqueCustomersController
+    UniqueCustomersController,
+    GetAllOrderDatesController
 } from './ressources/metrics/controllers';
 
 const app: Express = express();
@@ -59,6 +60,11 @@ app.get('/by-state/:state', async (req: Request, res: Response) => {
     const dataByState = await DataByStateController.getDataByState(state);
     res.json({ dataByState });
 })
+
+app.get('/order-dates', async (req: Request, res: Response) => {
+    const orderDates = await GetAllOrderDatesController.getAllOrderDates();
+    res.json(orderDates);
+});
 
 //Gestion des erreurs
 app.use((err: any, req: Request, res: Response, next: Function) => {
