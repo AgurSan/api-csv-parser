@@ -42,4 +42,4 @@ package-lock.json
 # Ignore le csv
 dataset.csv
 
-config.ts
+config.txt
