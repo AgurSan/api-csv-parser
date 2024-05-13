@@ -29,41 +29,55 @@ export async function handleRequest(
 }
 
 //routes
-app.get('/total-revenue', async (req: Request, res: Response) => {
-    const totalRevenue = await TotalRevenueController.getTotalRevenue();
-    res.json( { totalRevenue});
+app.get('/total-revenue', (req: Request, res: Response) => {
+    handleRequest(req, res, async (request: Request) => {
+        const totalRevenue = await TotalRevenueController.getTotalRevenue();
+        return { totalRevenue };
+    });
 });
 
-app.get('/unique-customers', async (req: Request, res: Response) => {
-    const uniqueCustomers = await UniqueCustomersController.getUniqueCustomers();
-    res.json({ uniqueCustomers });
+app.get('/unique-customers', (req: Request, res: Response) => {
+    handleRequest(req, res, async (request: Request) => {
+        const uniqueCustomers = await UniqueCustomersController.getUniqueCustomers();
+        return { uniqueCustomers };
+    });
 });
 
-app.get('/num-orders', async (req: Request, res: Response) => {
-    const numOrders = await NumOrdersController.getNumOrders();
-    res.json({ numOrders });
+app.get('/num-orders', (req: Request, res: Response) => {
+    handleRequest(req, res, async (request: Request) => {
+        const numOrders = await NumOrdersController.getNumOrders();
+        return { numOrders };
+    });
 });
 
-app.get('/avg-revenue-per-order', async (req: Request, res: Response) => {
-    const avgRevenuePerOrder = await AvgRevenuePerOrderController.getAvgRevenuePerOrder();
-    res.json({ avgRevenuePerOrder });
+app.get('/avg-revenue-per-order', (req: Request, res: Response) => {
+    handleRequest(req, res, async (request: Request) => {
+        const avgRevenuePerOrder = await AvgRevenuePerOrderController.getAvgRevenuePerOrder();
+        return { avgRevenuePerOrder };
+    });
 });
 
-app.get('/by-date/:date', async (req: Request, res: Response) => {
-    const date = req.params.date;
-    const dataByDate = await DataByDateController.getDataByDate(date);
-    res.json({ dataByDate });
+app.get('/by-date/:date', (req: Request, res: Response) => {
+    handleRequest(req, res, async (request: Request) => {
+        const date = req.params.date;
+        const dataByDate = await DataByDateController.getDataByDate(date);
+        return { dataByDate };
+    });
 });
 
-app.get('/by-state/:state', async (req: Request, res: Response) => {
-    const state = req.params.state;
-    const dataByState = await DataByStateController.getDataByState(state);
-    res.json({ dataByState });
-})
+app.get('/by-state/:state', (req: Request, res: Response) => {
+    handleRequest(req, res, async (request: Request) => {
+        const state = req.params.state;
+        const dataByState = await DataByStateController.getDataByState(state);
+        return { dataByState };
+    });
+});
 
-app.get('/order-dates', async (req: Request, res: Response) => {
-    const orderDates = await GetAllOrderDatesController.getAllOrderDates();
-    res.json(orderDates);
+app.get('/order-dates', (req: Request, res: Response) => {
+    handleRequest(req, res, async (request: Request) => {
+        const orderDates = await GetAllOrderDatesController.getAllOrderDates();
+        return orderDates;
+    });
 });
 
 //Gestion des erreurs
