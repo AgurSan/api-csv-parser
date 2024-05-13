@@ -1,20 +1,20 @@
 import { DataService } from '~/utils';
+import { Product } from '~~/types/Product';
 
 export class DataByDateService {
     constructor(private dataService: DataService) {}
-
     /**
-     * Retrieves metrics by order date.
+     * Retrieves data by the specified date.
      *
-     * @param {Date} date The date to filter by.
-     * @return {Promise<{ [key: string]: any[] }>} Metrics grouped by order date.
+     * @param {Date} date - The date to filter the data by.
+     * @return {Promise<Product[]>} The data filtered by the specified date.
      */
-    async getDataByDateService(date: Date): Promise<{ [key: string]: any[] }> {
+    async getDataByDateService(date: Date): Promise<Product[]> {
         const data = await this.dataService.getData();
-        const filteredData = data.filter((item: any) => {
+        const fileterdData = data.filter((item: Product) => {
             const orderDate = new Date(item['Order Date']);
             return orderDate.getTime() === date.getTime();
         });
-        return { [date.toISOString()]: filteredData };
+        return fileterdData;
     }
 }

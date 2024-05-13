@@ -1,32 +1,33 @@
-import { Request, Response } from "express";
 import { DataByDateService } from "../services";
-import { DataService } from "~/utils";
+import { CsvParser, DataService } from "~/utils";
+import { config } from "~/config";
+import { Product } from "~~/types/Product";
 
-export class DataByDateController {
-    private static dataByDateService: DataByDateService;
+const csvParser = new CsvParser();
+const dataService = new DataService(csvParser, config.CSV_FILE_PATH);
+const dataByDateService = new DataByDateService(dataService);
 
-    /**
-     * Constructs a new instance of the class.
-     *
-     * @param {DataService} dataService - The data service used to retrieve data.
-     */
-    constructor(private dataService: DataService) {
-        DataByDateController.dataByDateService = new DataByDateService(dataService);
-    }
+export const DataByDateController = {
 
     /**
-     * Retrieves data by a specific date.
+     * Retrieves data based on a specific date.
      *
-     * @param {Request} req - The request object containing the date parameter.
-     * @param {Response} res - The response object to send the retrieved data.
+     * @param {string} dateString - The date string in the format 'MM/DD/YYYY'.
+     * @return {Promise<Product[]>} The data corresponding to the provided date.
      */
-    static async getDataByDate(req: Request, res: Response) {
-        try {
-            const date = new Date(req.params.date);
-            const dataByDate = await DataByDateController.dataByDateService.getDataByDateService(date);
-            res.status(200).json(dataByDate);
-        } catch (error: any) {
-            res.status(500).json({ error: error.message });
+    getDataByDate: async (dateString: string): Promise<Product[]> => {
+        const dateParts = dateString.split('-');
+        if (dateParts.length !== 3) {
+            throw new Error('Invalid date format');
         }
+        const year = parseInt(dateParts[0], 10);
+        const month = parseInt(dateParts[1], 10) - 1; 
+        const day = parseInt(dateParts[2], 10);
+        const date = new Date(year, month, day);
+        if (isNaN(date.getTime())) {
+            throw new Error('Invalid date format');
+        }
+        const dataByDate = await dataByDateService.getDataByDateService(date);
+        return dataByDate;     
     }
 }

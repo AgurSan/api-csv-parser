@@ -48,6 +48,12 @@ app.get('/avg-revenue-per-order', async (req: Request, res: Response) => {
     res.json({ avgRevenuePerOrder });
 });
 
+app.get('/by-date/:date', async (req: Request, res: Response) => {
+    const date = req.params.date;
+    const dataByDate = await DataByDateController.getDataByDate(date);
+    res.json({ dataByDate });
+});
+
 //Gestion des erreurs
 app.use((err: any, req: Request, res: Response, next: Function) => {
     console.error(err.stack);
