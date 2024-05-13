@@ -1,32 +1,20 @@
-import { Request, Response } from 'express';
 import { NumOrdersService } from '../services/num-orders.service';
-import { DataService } from '~/utils';
+import { CsvParser,DataService } from '~/utils';
+import { config } from "~/config";
 
-export class NumOrdersController {
-    private static numOrdersService: NumOrdersService;
+const csvParser = new CsvParser();
+const dataService = new DataService(csvParser, config.CSV_FILE_PATH);
+const numOrdersService = new NumOrdersService(dataService);
 
-    /**
-     * Constructs a new instance of the class.
-     *
-     * @param {DataService} dataService - The data service used to retrieve data.
-     */
-    constructor(private dataService: DataService) {
-        NumOrdersController.numOrdersService = new NumOrdersService(dataService);
-    }
+export const NumOrdersController = {
 
-    /**
-     * Retrieves the total number of orders asynchronously.
-     *
-     * @param {Request} req - The request object.
-     * @param {Response} res - The response object.
-     * @return {Promise<void>} A promise that resolves when the total number of orders is retrieved and the response is sent.
-     */
-    static async getNumOrders(req: Request, res: Response): Promise<void> {
-        try {
-            const numOrders = await NumOrdersController.numOrdersService.getNumOrders();
-            res.status(200).json({ numOrders });
-        } catch (error: any) {
-            res.status(500).json({ error: error.message });
-        }
+        /**
+         * Retrieves the number of orders by calling the getNumOrders method of the numOrdersService.
+         *
+         * @return {Promise<number>} The number of orders.
+         */
+    getNumOrders: async () => {
+        const numOrders = await numOrdersService.getNumOrders();
+        return numOrders;
     }
 }
