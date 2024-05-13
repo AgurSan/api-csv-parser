@@ -33,6 +33,11 @@ app.get('/total-revenue', async (req: Request, res: Response) => {
     res.json( { totalRevenue});
 });
 
+app.get('/unique-customers', async (req: Request, res: Response) => {
+    const uniqueCustomers = await UniqueCustomersController.getUniqueCustomers();
+    res.json({ uniqueCustomers });
+});
+
 //Gestion des erreurs
 app.use((err: any, req: Request, res: Response, next: Function) => {
     console.error(err.stack);
