@@ -28,27 +28,10 @@ export async function handleRequest(
 }
 
 //routes
-type ControllerMethod = (req: Request, res: Response) => Promise<void>;
-
-const endpointMap: Record<string, ControllerMethod> = {
-    "avg-revenue-per-order": AvgRevenuePerOrderController.getAvgRevenuePerOrder,
-    //TODO: gérer le paramètre pour databystate et databydate
-    "data-by-date": DataByDateController.getDataByDate,
-    "data-by-state": DataByStateController.getDataByState,
-    "num-orders": NumOrdersController.getNumOrders,
-    "total-revenue": TotalRevenueController.getTotalRevenue,
-    "unique-customers": UniqueCustomersController.getUniqueCustomers
-};
-
-app.get("/:endpoint", async (req: Request, res: Response) => {
-    const controllerMethod = endpointMap[req.params.endpoint];
-    if (controllerMethod) {
-        return controllerMethod(req, res);
-    } else {
-        res.status(404).json({ error: "Not found" });
-    }
+app.get('/total-revenue', async (req: Request, res: Response) => {
+    const totalRevenue = await TotalRevenueController.getTotalRevenue();
+    res.json( { totalRevenue});
 });
-
 
 //Gestion des erreurs
 app.use((err: any, req: Request, res: Response, next: Function) => {

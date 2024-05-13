@@ -8,7 +8,7 @@ export class TotalRevenueService {
      *
      * @return {Promise<number>} The total revenue.
      */
-    async getTotalRevenue(): Promise<number> {
+    async calculateTotalRevenue(): Promise<number> {
         const data = await this.dataService.getData();
         const totalRevenue = data.reduce((acc, item) => acc + item.Sales * item.Quantity, 0);
         return totalRevenue;
