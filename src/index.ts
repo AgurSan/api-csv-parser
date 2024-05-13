@@ -43,6 +43,11 @@ app.get('/num-orders', async (req: Request, res: Response) => {
     res.json({ numOrders });
 });
 
+app.get('/avg-revenue-per-order', async (req: Request, res: Response) => {
+    const avgRevenuePerOrder = await AvgRevenuePerOrderController.getAvgRevenuePerOrder();
+    res.json({ avgRevenuePerOrder });
+});
+
 //Gestion des erreurs
 app.use((err: any, req: Request, res: Response, next: Function) => {
     console.error(err.stack);
