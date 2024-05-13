@@ -1,4 +1,4 @@
-import { NumOrdersService } from '../services/num-orders.service';
+import { NumOrdersService } from '../services';
 import { CsvParser,DataService } from '~/utils';
 import { config } from "~/config";
 

@@ -1,4 +1,4 @@
-import { TotalRevenueService } from '../services/total-revenue.service';
+import { TotalRevenueService } from '../services';
 import { CsvParser, DataService } from '~/utils';
 import { config } from "~/config";
 

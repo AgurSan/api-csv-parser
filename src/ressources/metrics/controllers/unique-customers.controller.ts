@@ -1,4 +1,4 @@
-import { UniqueCustomersService } from '../services/unique-customers.service';
+import { UniqueCustomersService } from '../services';
 import { CsvParser, DataService } from '~/utils';
 import { config } from "~/config";
 

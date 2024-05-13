@@ -1,4 +1,4 @@
-import { AvgRevenuePerOrderService } from '../services/avg-revenue-per-order.service';
+import { AvgRevenuePerOrderService } from '../services';
 import { CsvParser, DataService } from '~/utils';
 import { config } from "~/config";
 
