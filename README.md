@@ -25,17 +25,17 @@ API CSV Parser is a project aimed at providing a RESTful API for parsing CSV fil
 Here are the endpoints available in this API:
 
 ### Global Metrics
-- **Description:** Calculates the total revenue, average revenue per order, and unique customers.
--**Endpoint:** /metrics
--**HTTP Method:** GET
--**Parameters:**
-year (optional): Filter by year.
-state (optional): Filter by state.
--**Example Usage:**
-http://localhost:3000/metrics
-http://localhost:3000/metrics?year=2023
-http://localhost:3000/metrics?state=California
-http://localhost:3000/metrics?year=2023&state=California
+- **Description:** Calculates the total revenue, average revenue per order, and unique customers.  
+- **Endpoint:** /metrics  
+- **HTTP Method:** GET  
+- **Parameters:**  
+year (optional): Filter by year.  
+state (optional): Filter by state.  
+- **Example Usage:**
+http://localhost:3000/metrics  
+http://localhost:3000/metrics?year=2023  
+http://localhost:3000/metrics?state=California  
+http://localhost:3000/metrics?year=2023&state=California  
 
 ### Configuration
 - **API_PORT:** The port is by Default "3000".
