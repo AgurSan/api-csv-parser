@@ -58,48 +58,10 @@ http://localhost:3000/metrics?year=2023&state=California
       "revenue": 264645.5524000001,
       "orders": 300
     },
-    "3": {
-      "revenue": 980843.9724000006,
-      "orders": 696
-    },
-    "4": {
-      "revenue": 627581.3683999996,
-      "orders": 668
-    },
-    "5": {
-      "revenue": 797874.1184999995,
-      "orders": 735
-    },
-    "6": {
-      "revenue": 720871.2404999988,
-      "orders": 717
-    },
-    "7": {
-      "revenue": 702224.0310000004,
-      "orders": 710
-    },
-    "8": {
-      "revenue": 878110.9762000003,
-      "orders": 706
-    },
-    "9": {
-      "revenue": 1515795.0461000002,
-      "orders": 1383
-    },
-    "10": {
-      "revenue": 997496.4370999996,
-      "orders": 819
-    },
-    "11": {
-      "revenue": 1749999.8322000024,
-      "orders": 1471
-    },
-    "12": {
-      "revenue": 1747422.4947,
-      "orders": 1408
-    }
+    ...
   }
 }
+
 
 ```
   
@@ -113,6 +75,17 @@ export const config = {
     API_PORT: 3000,
     CSV_FILE_PATH: '/path/to/your/dataset.csv'
 }
+```
+
+### CSV
+
+- **Csv Format:**
+```csv
+Row ID,Order ID,Order Date,Customer ID,State,Region,Product ID,Sales,Quantity,
+1,CA-2016-152156,11/8/2016,CG-12520,Kentucky,South,FUR-BO-10001798,261.96,2,
+2,CA-2016-152156,11/8/2016,CG-12520,Kentucky,South,FUR-CH-10000454,731.94,3,
+...
+
 ```
   
 ### Error Handling
