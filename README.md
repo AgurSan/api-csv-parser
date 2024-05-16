@@ -24,39 +24,39 @@ API CSV Parser is a project aimed at providing a RESTful API for parsing CSV fil
 ## Endpoints
 Here are the endpoints available in this API:
 
-### Total Revenue
-- **Description:** Calculates the total revenue from the data in the CSV files.
-- **Endpoint:** /total-revenue
-- **HTTP Method:** GET
-- **Example Usage:** http://localhost:3000/total-revenue
+### Global Metrics
+- **Description:** Calculates the total revenue, average revenue per order, and unique customers.
+-**Endpoint:** /metrics
+-**HTTP Method:** GET
+-**Parameters:**
+year (optional): Filter by year.
+state (optional): Filter by state.
+-**Example Usage:**
+http://localhost:3000/metrics
+http://localhost:3000/metrics?year=2023
+http://localhost:3000/metrics?state=California
+http://localhost:3000/metrics?year=2023&state=California
 
-### Average Revenue Per Order
-- **Description**: Calculates the average revenue per order from the data in the CSV files.
-- **Endpoint**: /avg-revenue-per-order
-- **HTTP Method**: GET
-- **Example Usage**: http://localhost:3000/avg-revenue-per-order
+### Configuration
+- **API_PORT:** The port is by Default "3000".
+- **CSV_FIL_PATH:** The path to the CSV file to be parsed. Make sure to set the correct path.
 
-### Number of Orders
-- **Description**: Counts the total number of orders from the data in the CSV files.
-- **Endpoint**: /num-orders
-- **HTTP Method**: GET
-- **Example Usage**: http://localhost:3000/num-orders
+Example "config.ts":
+```typescript
+export const config = {
+    API_PORT: 3000,
+    CSV_FILE_PATH: '/path/to/your/dataset.csv'
+}
+```
 
-### Unique Customers
-- **Description**: Counts the unique number of customers from the data in the CSV files.
-- **Endpoint**: /unique-customers
-- **HTTP Method**: GET
-- **Example Usage**: http://localhost:3000/unique-customers
+### Error Handling
 
-### Data by State
-- **Description**: Retrieves data filtered by state from the data in the CSV files.
-- **Endpoint**: /by-state/:state
-- **HTTP Method**: GET
-- **Example Usage**: http://localhost:3000/by-state/CA
+The API provides error handling to ensure that any issues are properly reported. Errors are returned with a JSON structure containing the error message.
 
-### Data by Order Date
-- **Description**: Retrieves all unique order Date in the CSV file.
-- **Endpoint**: /order-dates
-- **HTTP Method**: GET
-- **Example Usage**: http://localhost:3000/order-dates
+Example:
 
+```json
+{
+    "error": "Internal server error"
+}
+```
