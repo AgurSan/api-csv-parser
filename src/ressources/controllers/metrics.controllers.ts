@@ -8,6 +8,14 @@ export class MetricsController {
         private metricsService: MetricsService
     ) {}
 
+    /**
+     * Retrieves metrics based on the filter criteria provided in the request query.
+     *
+     * @param {Request} req - The request object.
+     * @param {Response} res - The response object.
+     * @param {NextFunction} next - The next function in the middleware chain.
+     * @return {Promise<void>} A promise that resolves to void.
+     */
     public async getMetricsByFilter(req: Request, res: Response, next: NextFunction): Promise<void> {
         const { state, year } = req.query;
         try {
