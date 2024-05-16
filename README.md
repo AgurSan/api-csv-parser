@@ -31,7 +31,7 @@ Here are the endpoints available in this API:
 - **Parameters:**  
 year (optional): Filter by year.  
 state (optional): Filter by state.  
-- **Example Usage:**
+- **Example Usage:**  
 http://localhost:3000/metrics  
 http://localhost:3000/metrics?year=2023  
 http://localhost:3000/metrics?state=California  
