@@ -35,6 +35,7 @@ year (optional): Filter by year.
 state (optional): Filter by state.  
   
 - **Example Usage:**  
+```
 http://localhost:3000/metrics  
   
 http://localhost:3000/metrics?year=2023  
@@ -42,6 +43,7 @@ http://localhost:3000/metrics?year=2023
 http://localhost:3000/metrics?state=California  
   
 http://localhost:3000/metrics?year=2023&state=California  
+```
 
 - **JSON Format:**  
 ```json
@@ -65,7 +67,24 @@ http://localhost:3000/metrics?year=2023&state=California
 
 ```
   
-### Configuration
+### Metadata
+- **Description:** Retrieves unique years and states from the CSV file.  
+- **Endpoint:** /metadata  
+- **HTTP Method:** GET  
+- **Example Usage:**  
+```
+http://localhost:3000/metadata
+```
+
+- **JSON Format:**  
+```json
+"years": ["2015", "2016", "2017", ...],
+"states": ["California", "Texas", "New York", ...]
+
+
+```
+
+## Configuration
 - **API_PORT:** The port is by Default "3000".
 - **CSV_FIL_PATH:** The path to the CSV file to be parsed. Make sure to set the correct path.
   
@@ -85,6 +104,7 @@ Row ID,Order ID,Order Date,Customer ID,State,Region,Product ID,Sales,Quantity,
 1,CA-2016-152156,11/8/2016,CG-12520,Kentucky,South,FUR-BO-10001798,261.96,2,
 2,CA-2016-152156,11/8/2016,CG-12520,Kentucky,South,FUR-CH-10000454,731.94,3,
 ...
+
 
 ```
   
