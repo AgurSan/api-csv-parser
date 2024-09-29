@@ -31,8 +31,7 @@ export class MetricsService {
    * @return {number} The number of unique customers.
    */
   public calculateUniqueCustomers(data: Product[]): number {
-    const uniqueCustomers = new Set(data.map((item) => item.customerId));
-    return uniqueCustomers.size;
+    return new Set(data.map((item) => item.customerId)).size;
   }
 
   /**
