@@ -1,2 +1,2 @@
-export * from "./metrics.controllers"
-export * from "./metadata.controller"
+export * from "./metrics.controllers";
+export * from "./metadata.controller";

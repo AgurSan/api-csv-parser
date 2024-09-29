@@ -1,0 +1,11 @@
+{
+  "extends": ["prettier"],
+  "plugins": ["check-file"],
+  "rules": {
+    "prefer-arrow-callback": ["error"],
+    "prefer-template": ["error"],
+    "semi": ["error"],
+    "quotes": ["error", "double"],
+    "indent": ["error", 2]
+  }
+}
