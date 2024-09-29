@@ -1,5 +1,5 @@
 import cors from "cors";
-import express, { Express, Request, Response } from "express";
+import express, { Express, Response } from "express";
 import { CsvParser } from "~/utils";
 import { DataService, MetricsService } from "~/ressources/services";
 import {
@@ -19,18 +19,30 @@ const metricsController = new MetricsController(dataService, metricsService);
 const metadataController = new MetadataController(dataService);
 
 //routes
-app.get("/metrics", (req, res, next) =>
-  metricsController.getMetricsByFilter(req, res, next),
+app.get(
+  "/metrics",
+  (req: express.Request, res: express.Response, next: express.NextFunction) =>
+    metricsController.getMetricsByFilter(req, res, next),
 );
-app.get("/metadata", (req, res, next) =>
-  metadataController.getMetadata(req, res, next),
+
+app.get(
+  "/metadata",
+  (req: express.Request, res: express.Response, next: express.NextFunction) =>
+    metadataController.getMetadata(req, res, next),
 );
 
 //error handler
-app.use((err: any, res: Response) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Internal server error" });
-});
+app.use(
+  (
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) => {
+    console.error(err.stack);
+    res.status(500).json({ error: "Internal server error" });
+  },
+);
 
 app.listen(config.API_PORT || 3000, () => {
   console.log(`Server started on port ${config.API_PORT}`);
