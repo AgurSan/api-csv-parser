@@ -8,6 +8,7 @@ export class MetricsService {
    * @return {number} The total revenue calculated from the data array.
    */
   public calculateTotalRevenue(data: Product[]): number {
+    if (data.length === 0) return 0;
     return data.reduce((acc, item) => acc + item.sales * item.quantity, 0);
   }
 
