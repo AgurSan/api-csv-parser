@@ -21,7 +21,7 @@ export class MetricsService {
   public calculateAvgRevenuePerOrder(data: Product[]): number {
     const totalRevenue = this.calculateTotalRevenue(data);
     const totalOrders = data.length;
-    return totalRevenue / totalOrders;
+    return totalOrders === 0 ? 0 : totalRevenue / totalOrders;
   }
 
   /**
