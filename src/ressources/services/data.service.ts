@@ -64,28 +64,24 @@ export class DataService {
   /**
    * Retrieves unique years from the data.
    *
-   * @return {Promise<Set<string>>} A promise that resolves to a set of unique years.
+   * @return {Promise<string[]>} A promise that resolves to an array of unique years.
    */
-  async getUniqueYears(): Promise<Set<string>> {
+  async getUniqueYears(): Promise<string[]> {
     const data = await this.getData();
-    const years = new Set<string>();
-    data.forEach((product) => {
-      years.add(product.orderDate.getFullYear().toString());
-    });
-    return years;
+    const years = data.map((product) =>
+      product.orderDate.getFullYear().toString(),
+    );
+    return [...new Set(years)];
   }
 
   /**
    * Retrieves unique states from the data.
    *
-   * @return {Promise<Set<string>>} A promise that resolves to a set of unique states.
+   * @return {Promise<string[]>} A promise that resolves to an array of unique states.
    */
-  async getUniqueStates(): Promise<Set<string>> {
+  async getUniqueStates(): Promise<string[]> {
     const data = await this.getData();
-    const states = new Set<string>();
-    data.forEach((product) => {
-      states.add(product.state);
-    });
-    return states;
+    const states = data.map((product) => product.state);
+    return [...new Set(states)];
   }
 }
