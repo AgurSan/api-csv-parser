@@ -34,7 +34,7 @@ export class DataService {
    */
   async getDataByYear(year: number): Promise<Product[]> {
     return this.getFilteredData(
-      (product) => product["Order Date"].getFullYear() === year,
+      (product) => product.orderDate.getFullYear() === year,
     );
   }
   /**
@@ -44,7 +44,7 @@ export class DataService {
    * @return {Promise<Product[]>} A promise that resolves to an array of filtered products.
    */
   async getDataByState(state: string): Promise<Product[]> {
-    return this.getFilteredData((product) => product.State === state);
+    return this.getFilteredData((product) => product.state === state);
   }
 
   /**
@@ -57,7 +57,7 @@ export class DataService {
   async getDataByYearAndState(year: number, state: string): Promise<Product[]> {
     return this.getFilteredData(
       (product) =>
-        product["Order Date"].getFullYear() === year && product.State === state,
+        product.orderDate.getFullYear() === year && product.state === state,
     );
   }
 
@@ -70,7 +70,7 @@ export class DataService {
     const data = await this.getData();
     const years = new Set<string>();
     data.forEach((product) => {
-      years.add(product["Order Date"].getFullYear().toString());
+      years.add(product.orderDate.getFullYear().toString());
     });
     return years;
   }
@@ -84,7 +84,7 @@ export class DataService {
     const data = await this.getData();
     const states = new Set<string>();
     data.forEach((product) => {
-      states.add(product.State);
+      states.add(product.state);
     });
     return states;
   }

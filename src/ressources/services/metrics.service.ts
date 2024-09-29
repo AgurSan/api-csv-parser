@@ -8,7 +8,7 @@ export class MetricsService {
    * @return {number} The total revenue calculated from the data array.
    */
   public calculateTotalRevenue(data: Product[]): number {
-    return data.reduce((acc, item) => acc + item.Sales * item.Quantity, 0);
+    return data.reduce((acc, item) => acc + item.sales * item.quantity, 0);
   }
 
   /**
@@ -30,7 +30,7 @@ export class MetricsService {
    * @return {number} The number of unique customers.
    */
   public calculateUniqueCustomers(data: Product[]): number {
-    const uniqueCustomers = new Set(data.map((item) => item["Customer ID"]));
+    const uniqueCustomers = new Set(data.map((item) => item.customerId));
     return uniqueCustomers.size;
   }
 
@@ -43,11 +43,11 @@ export class MetricsService {
   public calculateMonthlyMetrics(data: Product[]): any {
     const monthlyMetrics: any = {};
     data.forEach((item) => {
-      const month = item["Order Date"].getMonth() + 1;
+      const month = item.orderDate.getMonth() + 1;
       if (!monthlyMetrics[month]) {
         monthlyMetrics[month] = { revenue: 0, orders: 0 };
       }
-      monthlyMetrics[month].revenue += item.Sales * item.Quantity;
+      monthlyMetrics[month].revenue += item.sales * item.quantity;
       monthlyMetrics[month].orders += 1;
     });
     return monthlyMetrics;

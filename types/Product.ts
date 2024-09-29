@@ -1,11 +1,11 @@
 export interface Product {
-  "Row ID": number;
-  "Order ID": string;
-  "Order Date": Date;
-  "Customer ID": string;
-  State: string;
-  Region: string;
-  "Product ID": string;
-  Sales: number;
-  Quantity: number;
+  rowId: number;
+  orderId: string;
+  orderDate: Date;
+  customerId: string;
+  state: string;
+  region: string;
+  productId: string;
+  sales: number;
+  quantity: number;
 }
