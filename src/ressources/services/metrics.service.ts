@@ -1,5 +1,5 @@
 import type { Product } from "~~/types/Product";
-
+import type { MonthlyMetric } from "~~/types/MonthlyMetrics";
 export class MetricsService {
   /**
    * Calculates the total revenue by summing the sales multiplied by the quantity of each product in the data array.
@@ -38,10 +38,12 @@ export class MetricsService {
    * Calculates the monthly metrics based on the data provided.
    *
    * @param {Product[]} data - An array of products containing information for each month.
-   * @return {any} Object containing monthly revenue and number of orders.
+   * @return {Record<number, MonthlyMetric>} Object containing monthly revenue and number of orders.
    */
-  public calculateMonthlyMetrics(data: Product[]): any {
-    const monthlyMetrics: any = {};
+  public calculateMonthlyMetrics(
+    data: Product[],
+  ): Record<number, MonthlyMetric> {
+    const monthlyMetrics: Record<number, MonthlyMetric> = {};
     data.forEach((item) => {
       const month = item.orderDate.getMonth() + 1;
       if (!monthlyMetrics[month]) {
